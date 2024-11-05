@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor_internal.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsoysal <hsoysal@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kahoumou <kahoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 22:48:05 by hsoysal           #+#    #+#             */
-/*   Updated: 2024/08/16 22:43:45 by hsoysal          ###   ########.fr       */
+/*   Updated: 2024/11/04 15:39:12 by kahoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,30 @@ bool	command_can_be_executed(t_commande *command)
 	return (false);
 }
 
-int	execute_command(t_commande *command, char ***g_env)
+// int	execute_command(t_commande *command, char ***g_env)
+// {
+// 	if (is_builtin(command))
+// 		return (execute_builtin(command, g_env));
+// 	else
+// 		return (execve(command->path, command->args, *g_env));
+// 	return (2);
+// }
+
+int execute_command(t_commande *command, char ***g_env)
 {
-	if (is_builtin(command))
-		return (execute_builtin(command, g_env));
-	else
-		return (execve(command->path, command->args, *g_env));
-	return (2);
+    if (is_builtin(command))
+        return (execute_builtin(command, g_env));
+
+    // Exécute une commande externe
+    if (execve(command->path, command->args, *g_env) == -1)
+    {
+        perror("execve failed"); // Affiche l'erreur spécifique
+        return -1; // Retourne -1 pour indiquer un échec
+    }
+
+    return 0; // Ce code ne sera jamais atteint si execve réussit
 }
+
 
 int	execute_command_in_pipe(t_commande *command, char **g_env)
 {

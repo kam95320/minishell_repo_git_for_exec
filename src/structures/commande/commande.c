@@ -6,7 +6,7 @@
 /*   By: kahoumou <kahoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:38:26 by hsoysal           #+#    #+#             */
-/*   Updated: 2024/08/27 15:43:17 by kahoumou         ###   ########.fr       */
+/*   Updated: 2024/11/05 12:15:42 by kahoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,11 @@ int	command_get_fd_infile(t_commande *commande)
 		return (0);
 	i = 0;
 	while (commande->infiles[i + 1] != NULL)
+	{
+		printf("command_get_fd_intfile boucle while\n");
+		printf("commande_outfiles[i]=%d\n", i);
 		i++;
+	}
 	if (commande->infiles[i]->type == INFILE_TYPE_STRING)
 		return (open(commande->infiles[i]->value.file_name_value, O_RDONLY));
 	return (commande->infiles[i]->value.fd_value);
@@ -73,7 +77,11 @@ int	command_get_fd_outfile(t_commande *commande)
 		return (1);
 	i = 0;
 	while (commande->outfiles[i + 1] != NULL)
+	{
+		printf("command_get_fd_outfile boucle while\n");
+		printf("commande_outfiles i  =% d\n", i);
 		i++;
+	}
 	if (commande->outfiles[i]->type == OUTFILE_TYPE_APPEND)
 		return (open(commande->outfiles[i]->file_name,
 				O_WRONLY | O_CREAT | O_APPEND, 0644));
