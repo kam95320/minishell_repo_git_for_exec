@@ -6,7 +6,7 @@
 /*   By: kahoumou <kahoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 12:35:15 by kahoumou          #+#    #+#             */
-/*   Updated: 2024/11/06 16:17:04 by kahoumou         ###   ########.fr       */
+/*   Updated: 2024/11/09 15:52:01 by kahoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	create_and_handle_process(int i, t_pipe_info *pipe_info,
 	}
 	else
 	{
+		printf("pass in  exit 1");
 		perror("fork failed");
 		exit(EXIT_FAILURE);
 	}

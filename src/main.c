@@ -6,7 +6,7 @@
 /*   By: kahoumou <kahoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:46:57 by hsoysal           #+#    #+#             */
-/*   Updated: 2024/09/04 15:57:16 by kahoumou         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:28:28 by kahoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static bool	is_not_empty(const char *str)
 
 static bool	is_a_valid_command_line(const char *command_line)
 {
+	
 	t_syntax_error	error;
 
 	error = check_syntax(command_line);
@@ -78,6 +79,7 @@ static char	*read_command_line(void)
 		free_env(*get_envp(NULL));
 		write(1, "exit\n", 6);
 		exit(get_exit_status(_LAST_STATUS));
+		
 	}
 	return (command_line);
 }
@@ -92,6 +94,7 @@ int	main(int argc, char const *argv[], char *envp[])
 	g_env = get_envp(envp);
 	while (1)
 	{
+	
 		command_line = read_command_line();
 		if (is_a_valid_command_line(command_line))
 		{

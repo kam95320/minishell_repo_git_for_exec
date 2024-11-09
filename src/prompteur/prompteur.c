@@ -6,7 +6,7 @@
 /*   By: kahoumou <kahoumou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/10 07:12:41 by hsoysal           #+#    #+#             */
-/*   Updated: 2024/08/17 20:48:11 by kahoumou         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:30:49 by kahoumou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	append_pwd_to_prompt(void *prompt)
 
 char	*get_prompt(void)
 {
+	
 	t_double_linked_list	*prompt;
 	char					*path;
 
@@ -55,5 +56,6 @@ char	*get_prompt(void)
 		append_to_prompt(prompt, "\033[1;31m");
 	append_to_prompt(prompt, " ▷\033[40;0m ");
 	free(concatenate(prompt));
+	
 	return (ft_strdup("minishell "));
 }
